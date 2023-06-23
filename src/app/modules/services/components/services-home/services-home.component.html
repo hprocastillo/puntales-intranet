@@ -1,0 +1,27 @@
+<ng-container *ngIf="authService.user$ | async as firebaseUser; else noLogged">
+
+  <!-- LIST SERVICES -->
+  <app-services-list
+    *ngIf="template === 'LIST'"
+    [listServices]="listServices"
+    (outTemplate)="getTemplate($event)"
+    (serviceToEdit)="getEditService($event)"
+    (serviceToDelete)="getDeleteService($event)"
+  ></app-services-list>
+
+  <!-- NEW SERVICE -->
+  <app-services-new
+    *ngIf="template === 'NEW'"
+    [firebaseUser]="firebaseUser"
+    (outTemplate)="getTemplate($event)"
+  ></app-services-new>
+
+  <!-- EDIT SERVICE -->
+  <app-services-edit
+    *ngIf="template === 'EDIT'"
+  ></app-services-edit>
+
+</ng-container>
+
+<!-- NO LOGGED -->
+<ng-template #noLogged></ng-template>

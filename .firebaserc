@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "puntales-com-pe": {
+      "hosting": {
+        "puntales-Intranet": [
+          "puntales-intranet"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "puntales-com-pe"
+  }
+}

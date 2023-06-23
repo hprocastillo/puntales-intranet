@@ -1,0 +1,42 @@
+<div class="row" style="margin-top: 100px">
+  <div class="col-12 text-center">
+    <p class="fs-3 fw-bold">Titan Puntales - Sistema de gestión</p>
+  </div>
+</div>
+<br>
+
+<div class="row">
+  <div class="col-4 offset-4">
+    <div class="card shadow rounded p-3">
+      <form [formGroup]="formLogin" (ngSubmit)="onSubmit()">
+        <!-- EMAIL -->
+        <div class="form-floating mb-3">
+          <input
+            type="email"
+            class="form-control"
+            id="emailTXT_desktop"
+            placeholder="Correo electrónico"
+            formControlName="email">
+          <label for="emailTXT_desktop">Correo electrónico</label>
+        </div>
+
+        <!-- PASSWORD -->
+        <div class="form-floating mb-3">
+          <input
+            type="password"
+            class="form-control"
+            id="passwordTXT_desktop"
+            placeholder="Contraseña"
+            formControlName="password">
+          <label for="passwordTXT_desktop">Contraseña</label>
+        </div>
+
+        <!-- BUTTON SUBMIT -->
+        <button type="submit" class="btn btn-dark w-100">
+          INGRESAR
+        </button>
+
+      </form>
+    </div>
+  </div>
+</div>

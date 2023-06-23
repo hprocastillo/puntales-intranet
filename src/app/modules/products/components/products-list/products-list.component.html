@@ -1,0 +1,152 @@
+<!-- HEADER -->
+<div class="card shadow rounder p-3 mt-3 mb-3">
+  <div class="row">
+    <!-- TITLE -->
+    <div class="col-6">
+      <p class="fs-5 fw-bold mb-0">PRODUCTOS</p>
+    </div>
+
+    <!-- BUTTONS -->
+    <div class="col-6 text-end">
+      <!-- BTN BACK -->
+      <button type="button" class="btn btn-secondary me-2" [routerLink]="'/home'">
+        <i class="bi bi-backspace-fill me-2"></i>
+        Atrás
+      </button>
+      <!-- BTN NEW SERVICE -->
+      <button type="button" class="btn btn-primary" (click)="getTemplate('NEW')">
+        <i class="bi bi-plus-square me-2"></i>
+        Nuevo
+      </button>
+    </div>
+
+  </div>
+</div>
+
+<!-- LIST / TABLE -->
+<div class="card shadow rounded p-3">
+  <div class="row">
+    <div class="col-12">
+      <div class="table-responsive">
+        <table class="table table-bordered">
+          <thead>
+          <tr class="text-nowrap">
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col">Categoria</th>
+            <th scope="col">Producto</th>
+            <th scope="col">Foto 1</th>
+            <th scope="col">Foto 2</th>
+            <th scope="col">Foto 3</th>
+            <th scope="col">Ficha técnica</th>
+            <th scope="col">Característica 1</th>
+            <th scope="col">Característica 2</th>
+            <th scope="col">Característica 3</th>
+            <th scope="col">Característica 4</th>
+            <th scope="col">Característica 5</th>
+            <th scope="col">Característica 6</th>
+            <th scope="col">Característica 7</th>
+            <th scope="col">Característica 8</th>
+            <th scope="col">Característica 9</th>
+            <th scope="col">Característica 10</th>
+            <th scope="col">Fecha última actualización</th>
+            <th scope="col">Fecha de registro</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr class="text-nowrap" *ngFor="let product of listProducts; index as i">
+            <!-- INDEX -->
+            <th scope="row">{{i + 1}}</th>
+
+            <!-- BUTTON DELETE -->
+            <td class="text-center">
+              <button type="button" class="btn btn-danger btn-sm" (click)="deleteProduct(product)">
+                <i class="bi bi-trash-fill"></i>
+              </button>
+            </td>
+
+            <!-- BUTTON EDIT -->
+            <td class="text-center">
+              <button type="button" class="btn btn-primary btn-sm" (click)="editProduct(product)">
+                <i class="bi bi-pencil-square"></i>
+              </button>
+            </td>
+
+            <!-- CATEGORY -->
+            <td>{{product.category}}</td>
+
+            <!-- NAME -->
+            <td>{{product.name}}</td>
+
+            <!-- PHOTO 1 -->
+            <td class="text-center">
+              <ng-container *ngIf="product.photoURL1 !==''; else noPhoto1">
+                <img class="img-fluid" src="{{product.photoURL1}}" alt="{{product.name}}">
+              </ng-container>
+              <ng-template #noPhoto1>
+                <p class="small text-muted">No se adjunto foto.</p>
+              </ng-template>
+            </td>
+
+            <!-- PHOTO 2 -->
+            <td class="text-center">
+              <ng-container *ngIf="product.photoURL2 !=='';else noPhoto2">
+                <img class="img-fluid" src="{{product.photoURL2}}" alt="{{product.name}}">
+              </ng-container>
+              <ng-template #noPhoto2>
+                <p class="small text-muted">No se adjunto foto.</p>
+              </ng-template>
+            </td>
+
+            <!-- PHOTO 3 -->
+            <td class="text-center">
+              <ng-container *ngIf="product.photoURL3 !=='';else noPhoto3">
+                <img class="img-fluid" src="{{product.photoURL3}}" alt="{{product.name}}">
+              </ng-container>
+              <ng-template #noPhoto3>
+                <p class="small text-muted">No se adjunto foto.</p>
+              </ng-template>
+            </td>
+
+            <!-- DATA SHEET -->
+            <td class="text-center">
+              <ng-container *ngIf="product.dataSheetURL !=='';else noDataSheet">
+                <a href="{{product.dataSheetURL}}" target="_blank">Descargar</a>
+              </ng-container>
+              <ng-template #noDataSheet>
+                <p class="small text-muted">No se adjunto archivo.</p>
+              </ng-template>
+            </td>
+
+            <!-- FEATURE 1 -->
+            <td>{{product.feature1}}</td>
+            <!-- FEATURE 2 -->
+            <td>{{product.feature2}}</td>
+            <!-- FEATURE 3 -->
+            <td>{{product.feature3}}</td>
+            <!-- FEATURE 4 -->
+            <td>{{product.feature4}}</td>
+            <!-- FEATURE 5 -->
+            <td>{{product.feature5}}</td>
+            <!-- FEATURE 6 -->
+            <td>{{product.feature6}}</td>
+            <!-- FEATURE 7 -->
+            <td>{{product.feature7}}</td>
+            <!-- FEATURE 8 -->
+            <td>{{product.feature8}}</td>
+            <!-- FEATURE 9 -->
+            <td>{{product.feature9}}</td>
+            <!-- FEATURE 10 -->
+            <td>{{product.feature10}}</td>
+            <!-- LAST UPDATE -->
+            <td>{{product.updatedAt.toMillis() | date:'MMM d, y'}}</td>
+            <!-- CREATION DATE -->
+            <td>{{product.createdAt.toMillis() | date:'MMM d, y'}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

@@ -97,8 +97,18 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "version": 2,
+            "browserTarget": "puntales-Intranet:build:production"
+          }
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "e52108e7-5226-4e5d-8503-1e962cfab548"
   }
 }

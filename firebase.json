@@ -1,0 +1,9 @@
+{
+  "hosting": [
+    {
+      "target": "puntales-Intranet",
+      "source": ".",
+      "frameworksBackend": {}
+    }
+  ]
+}

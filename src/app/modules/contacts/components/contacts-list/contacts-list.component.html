@@ -1,0 +1,65 @@
+<!-- HEADER -->
+<div class="card shadow rounder p-3 mt-3 mb-3">
+  <div class="row">
+    <!-- TITLE -->
+    <div class="col-6">
+      <p class="fs-5 fw-bold mb-0">CONTACTOS DESDE LA WEB</p>
+    </div>
+
+    <!-- BUTTONS -->
+    <div class="col-6 text-end">
+      <!-- BTN BACK -->
+      <button type="button" class="btn btn-secondary" [routerLink]="'/home'">
+        <i class="bi bi-backspace-fill me-2"></i>
+        Atrás
+      </button>
+    </div>
+
+  </div>
+</div>
+
+<!-- LIST / TABLE -->
+<div class="row">
+  <div class="col-12">
+
+    <!-- MESSAGE -->
+    <div class="card shadow rounded p-3 mb-3" *ngFor="let contact of listContacts; index as i">
+      <div class="row">
+        <div class="col-4">
+
+          <!-- CREATED AT -->
+          <div id="created mb-5">
+            <p class="small text-muted m-0">Fecha de envio:</p>
+            <p class="fw-bold">{{contact.createdAt.toMillis() | date:'MMM d, y'}}</p>
+          </div>
+
+          <!-- FULL NAME -->
+          <div id="fullName mb-5">
+            <p class="small text-muted m-0">Nombres y Apellidos:</p>
+            <p class="fw-bold">{{contact.fullName}}</p>
+          </div>
+
+          <!-- EMAIL -->
+          <div id="email">
+            <p class="small text-muted m-0">Correo electrónico:</p>
+            <p class="fw-bold">{{contact.email}}</p>
+          </div>
+
+        </div>
+        <div class="col-8">
+          <!-- SUBJECT -->
+          <div id="subject mb-5">
+            <p class="small text-muted m-0">Asunto:</p>
+            <p class="fw-bold">{{contact.subject}}</p>
+          </div>
+          <!-- MESSAGE -->
+          <div id="message">
+            <p class="small text-muted m-0">Mensaje:</p>
+            <p class="fw-bold">{{contact.message}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

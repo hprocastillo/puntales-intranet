@@ -1,0 +1,226 @@
+<form [formGroup]="newServiceForm" (ngSubmit)="onSubmit(firebaseUser)">
+
+  <!-- HEADER -->
+  <div class="card shadow rounded p-3 mt-3 mb-3">
+    <div class="row">
+      <!-- TITLE -->
+      <div class="col-6">
+        <p class="fs-5 fw-bold mb-0">NUEVO SERVICIO</p>
+      </div>
+
+      <!-- BUTTONS -->
+      <div class="col-6 text-end">
+        <!-- BTN CANCEL -->
+        <button type="button" class="btn btn-danger me-2" (click)="getTemplate('LIST')">
+          <i class="bi bi-x-circle-fill me-2"></i>
+          Cancelar
+        </button>
+
+        <!-- BUTTON SAVE /W LOADING EFFECT -->
+        <button
+          *ngIf="loadingEffect"
+          type="button"
+          class="btn btn-success" disabled
+        >
+          <span aria-hidden="true" class="spinner-border spinner-border-sm" role="status"></span>
+          Guardando...
+        </button>
+
+        <!-- BUTTON SAVE -->
+        <button
+          *ngIf="!loadingEffect"
+          type="submit"
+          class="btn btn-success"
+        >
+          <i class="bi bi-hdd-fill me-2"></i>
+          Guardar
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- FORM -->
+  <div class="card shadow rounded p-3">
+    <div class="row">
+
+      <!-- DATA SERVICE -->
+      <div class="col-3">
+        <p class="fw-bold mb-1">Datos generales</p>
+        <hr class="text-muted m-0">
+
+        <!-- NAME -->
+        <div class="form-floating mt-3">
+          <input
+            type="text"
+            class="form-control"
+            id="nameTXT"
+            placeholder="Nombre del servicio:"
+            formControlName="name"
+            required>
+          <label for="nameTXT">Nombre del servicio:</label>
+        </div>
+
+        <!-- DESCRIPTION -->
+        <div class="form-floating mt-3">
+          <textarea
+            class="form-control"
+            id="descriptionTXT"
+            placeholder="Descripción del servicio:"
+            formControlName="description"
+            style="height: 200px"></textarea>
+          <label for="descriptionTXT">Descripción del servicio:</label>
+        </div>
+        <br>
+      </div>
+
+      <!-- FEATURES -->
+      <div class="col-5 border-start">
+        <p class="fw-bold mb-1">Características</p>
+        <hr class="text-muted m-0">
+
+        <!-- FEATURE 1 -->
+        <div class="form-floating mt-3">
+          <textarea
+            class="form-control"
+            id="feature1TXT"
+            placeholder="Característica 1:"
+            formControlName="feature1"
+            style="height: 80px"></textarea>
+          <label for="feature1TXT">Característica 1:</label>
+        </div>
+
+        <!-- FEATURE 2 -->
+        <div class="form-floating mt-3">
+          <textarea
+            class="form-control"
+            id="feature2TXT"
+            placeholder="Característica 2:"
+            formControlName="feature2"
+            style="height: 80px"></textarea>
+          <label for="feature2TXT">Característica 2:</label>
+        </div>
+
+        <!-- FEATURE 3 -->
+        <div class="form-floating mt-3">
+          <textarea
+            class="form-control"
+            id="feature3TXT"
+            placeholder="Característica 3:"
+            formControlName="feature3"
+            style="height: 80px"></textarea>
+          <label for="feature3TXT">Característica 3:</label>
+        </div>
+
+        <!-- FEATURE 4 -->
+        <div class="form-floating mt-3">
+          <textarea
+            class="form-control"
+            id="feature4TXT"
+            placeholder="Característica 4:"
+            formControlName="feature4"
+            style="height: 80px"></textarea>
+          <label for="feature4TXT">Característica 4:</label>
+        </div>
+
+        <!-- FEATURE 5 -->
+        <div class="form-floating mt-3">
+          <textarea
+            class="form-control"
+            id="feature5TXT"
+            placeholder="Característica 5:"
+            formControlName="feature5"
+            style="height: 80px"></textarea>
+          <label for="feature5TXT">Característica 5:</label>
+        </div>
+      </div>
+
+      <!-- PHOTOS -->
+      <div class="col-4 border-start">
+        <p class="fw-bold mb-1">Adjuntar fotos</p>
+        <hr class="text-muted m-0">
+
+        <!-- PHOTO 1 -->
+        <ng-container *ngIf="photo1_preview || photo1_preview !=='';else noPreview1">
+          <div class="row mt-3">
+            <div class="col-4">
+              <button
+                (click)="deletePreview('photo1')"
+                type="button"
+                class="btn btn-danger btn-sm ms-2">
+                <i class="bi bi-trash-fill"></i>
+                Borrar
+              </button>
+            </div>
+            <div class="col-8">
+              <img style="max-height: 100px" src="{{photo1_preview}}" alt="Vista previa">
+            </div>
+          </div>
+        </ng-container>
+
+        <ng-template #noPreview1>
+          <div class="row mt-3">
+            <div class="col-12">
+              <label for="photo1File" class="form-label">Seleccionar foto</label>
+              <input type="file" class="form-control" id="photo1File" (change)="take_photo1($event)">
+            </div>
+          </div>
+        </ng-template>
+
+        <!-- PHOTO 2 -->
+        <ng-container *ngIf="photo2_preview || photo2_preview !=='';else noPreview2">
+          <div class="row mt-3">
+            <div class="col-4">
+              <button
+                (click)="deletePreview('photo2')"
+                type="button"
+                class="btn btn-danger btn-sm ms-2">
+                Borrar
+                <i class="bi bi-trash-fill"></i>
+              </button>
+            </div>
+            <div class="col-8">
+              <img style="max-height: 100px" src="{{photo2_preview}}" alt="Vista previa">
+            </div>
+          </div>
+        </ng-container>
+
+        <ng-template #noPreview2>
+          <div class="row mt-5">
+            <div class="col-12">
+              <label for="photo2File" class="form-label">Seleccionar foto</label>
+              <input type="file" class="form-control" id="photo2File" (change)="take_photo2($event)">
+            </div>
+          </div>
+        </ng-template>
+
+        <!-- PHOTO 3 -->
+        <ng-container *ngIf="photo3_preview || photo3_preview !=='';else noPreview3">
+          <div class="row mt-5">
+            <div class="col-4">
+              <button
+                (click)="deletePreview('photo3')"
+                type="button"
+                class="btn btn-danger btn-sm ms-2">
+                Borrar
+                <i class="bi bi-trash-fill"></i>
+              </button>
+            </div>
+            <div class="col-8">
+              <img style="max-height: 100px" src="{{photo3_preview}}" alt="Vista previa">
+            </div>
+          </div>
+        </ng-container>
+
+        <ng-template #noPreview3>
+          <div class="row mt-5">
+            <div class="col-12">
+              <label for="photo3File" class="form-label">Seleccionar foto</label>
+              <input type="file" class="form-control" id="photo3File" (change)="take_photo3($event)">
+            </div>
+          </div>
+        </ng-template>
+
+      </div>
+    </div>
+  </div>
+</form>

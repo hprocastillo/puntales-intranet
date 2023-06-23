@@ -1,0 +1,125 @@
+<!-- HEADER -->
+<div class="card shadow rounder p-3 mt-3 mb-3">
+  <div class="row">
+    <!-- TITLE -->
+    <div class="col-6">
+      <p class="fs-5 fw-bold mb-0">SERVICIOS</p>
+    </div>
+
+    <!-- BUTTONS -->
+    <div class="col-6 text-end">
+      <!-- BTN BACK -->
+      <button type="button" class="btn btn-secondary me-2" [routerLink]="'/home'">
+        <i class="bi bi-backspace-fill me-2"></i>
+        Atrás
+      </button>
+      <!-- BTN NEW SERVICE -->
+      <button type="button" class="btn btn-primary" (click)="getTemplate('NEW')">
+        <i class="bi bi-plus-square me-2"></i>
+        Nuevo
+      </button>
+    </div>
+
+  </div>
+</div>
+
+<!-- LIST / TABLE -->
+<div class="card shadow rounded p-3">
+  <div class="row">
+    <div class="col-12">
+      <div class="table-responsive">
+        <table class="table table-bordered">
+          <thead>
+          <tr class="text-nowrap">
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col">Servicio</th>
+            <th scope="col">Foto 1</th>
+            <th scope="col">Foto 2</th>
+            <th scope="col">Foto 3</th>
+            <th scope="col">Descripción</th>
+            <th scope="col">Característica 1</th>
+            <th scope="col">Característica 2</th>
+            <th scope="col">Característica 3</th>
+            <th scope="col">Característica 4</th>
+            <th scope="col">Característica 5</th>
+            <th scope="col">Fecha última actualización</th>
+            <th scope="col">Fecha de registro</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr class="text-nowrap" *ngFor="let service of listServices; index as i">
+            <!-- INDEX -->
+            <th scope="row">{{i + 1}}</th>
+
+            <!-- BUTTON DELETE -->
+            <td class="text-center">
+              <button type="button" class="btn btn-danger btn-sm" (click)="deleteService(service)">
+                <i class="bi bi-trash-fill"></i>
+              </button>
+            </td>
+
+            <!-- BUTTON EDIT -->
+            <td class="text-center">
+              <button type="button" class="btn btn-primary btn-sm" (click)="editService(service)">
+                <i class="bi bi-pencil-square"></i>
+              </button>
+            </td>
+
+            <!-- NAME -->
+            <td>{{service.name}}</td>
+
+            <!-- PHOTO 1 -->
+            <td class="text-center">
+              <ng-container *ngIf="service.photoURL1 !==''; else noPhoto1">
+                <img ngSrc="{{service.photoURL1}}" alt="{{service.name}}" height="64" width="64">
+              </ng-container>
+              <ng-template #noPhoto1>
+                <p class="small text-muted">No se adjunto foto.</p>
+              </ng-template>
+            </td>
+
+            <!-- PHOTO 2 -->
+            <td class="text-center">
+              <ng-container *ngIf="service.photoURL2 !=='';else noPhoto2">
+                <img ngSrc="{{service.photoURL2}}" alt="{{service.name}}" height="64" width="64">
+              </ng-container>
+              <ng-template #noPhoto2>
+                <p class="small text-muted">No se adjunto foto.</p>
+              </ng-template>
+            </td>
+
+            <!-- PHOTO 3 -->
+            <td class="text-center">
+              <ng-container *ngIf="service.photoURL3 !=='';else noPhoto3">
+                <img ngSrc="{{service.photoURL3}}" alt="{{service.name}}" height="64" width="64">
+              </ng-container>
+              <ng-template #noPhoto3>
+                <p class="small text-muted">No se adjunto foto.</p>
+              </ng-template>
+            </td>
+
+            <!-- DESCRIPTION -->
+            <td>{{service.description}}</td>
+            <!-- FEATURE 1 -->
+            <td>{{service.feature1}}</td>
+            <!-- FEATURE 2 -->
+            <td>{{service.feature2}}</td>
+            <!-- FEATURE 3 -->
+            <td>{{service.feature3}}</td>
+            <!-- FEATURE 4 -->
+            <td>{{service.feature4}}</td>
+            <!-- FEATURE 5 -->
+            <td>{{service.feature5}}</td>
+            <!-- LAST UPDATE -->
+            <td>{{service.updatedAt.toMillis() | date:'MMM d, y'}}</td>
+            <!-- CREATION DATE -->
+            <td>{{service.createdAt.toMillis() | date:'MMM d, y'}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
